@@ -220,7 +220,7 @@ struct FlowPtEfficiency {
       fGFWReco->CreateRegions();
     }
 
-    if(cfgEnableITSCuts){
+    if (cfgEnableITSCuts) {
       if (cfgTrkSelRun3ITSMatch) {
         myTrackSel = getGlobalTrackSelectionRun3ITSMatch(TrackSelection::GlobalTrackRun3ITSMatching::Run3ITSall7Layers, TrackSelection::GlobalTrackRun3DCAxyCut::Default);
       } else {
@@ -234,11 +234,10 @@ struct FlowPtEfficiency {
     }
     myTrackSel.SetMinNClustersTPC(cfgCutTPCclu);
     myTrackSel.SetMinNCrossedRowsTPC(cfgCutTPCcrossedrows);
-    if(cfgEnableITSCuts) myTrackSel.SetMinNClustersITS(cfgCutITSclu);
+    if (cfgEnableITSCuts)
+      myTrackSel.SetMinNClustersITS(cfgCutITSclu);
     if (!cfgCutDCAzPtDepEnabled)
       myTrackSel.SetMaxDcaZ(cfgCutDCAz);
-
-  
   }
 
   template <char... chars>
@@ -363,12 +362,12 @@ struct FlowPtEfficiency {
   template <typename TTrack>
   bool trackSelected(TTrack track)
   {
-    if (cfgkIsTrackGlobal && !track.isGlobalTrack()){
-      LOGF(info,"Track is not global");
+    if (cfgkIsTrackGlobal && !track.isGlobalTrack()) {
+      LOGF(info, "Track is not global");
       return false;
     }
-    if (cfgCutDCAzPtDepEnabled && (track.dcaZ() > (0.004f + 0.013f / track.pt()))){
-      LOGF(info,"pt-dep DCAz not valid");
+    if (cfgCutDCAzPtDepEnabled && (track.dcaZ() > (0.004f + 0.013f / track.pt()))) {
+      LOGF(info, "pt-dep DCAz not valid");
       return false;
     }
     return myTrackSel.IsSelected(track);
