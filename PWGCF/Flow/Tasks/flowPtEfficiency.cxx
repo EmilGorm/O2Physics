@@ -14,30 +14,32 @@
 /// \since  Jun/08/2023
 /// \brief  a task to calculate the pt efficiency
 
-#include <CCDB/BasicCCDBManager.h>
-#include <vector>
-#include <string>
-#include "Framework/runDataProcessing.h"
-#include "Framework/AnalysisTask.h"
-#include "Framework/ASoAHelpers.h"
-#include "Framework/RunningWorkflowInfo.h"
-#include "Framework/HistogramRegistry.h"
-
-#include "Common/Core/RecoDecay.h"
-#include "Common/DataModel/EventSelection.h"
-#include "Common/Core/TrackSelection.h"
-#include "Common/Core/TrackSelectionDefaults.h"
-#include "Common/DataModel/TrackSelectionTables.h"
-
-#include "GFWPowerArray.h"
+#include "FlowContainer.h"
 #include "GFW.h"
 #include "GFWCumulant.h"
+#include "GFWPowerArray.h"
 #include "GFWWeights.h"
-#include "FlowContainer.h"
+
+#include "Common/Core/RecoDecay.h"
+#include "Common/Core/TrackSelection.h"
+#include "Common/Core/TrackSelectionDefaults.h"
+#include "Common/DataModel/EventSelection.h"
+#include "Common/DataModel/TrackSelectionTables.h"
+
+#include "Framework/ASoAHelpers.h"
+#include "Framework/AnalysisTask.h"
+#include "Framework/HistogramRegistry.h"
+#include "Framework/RunningWorkflowInfo.h"
+#include "Framework/runDataProcessing.h"
+#include <CCDB/BasicCCDBManager.h>
+
+#include <TF1.h>
+#include <TPDGCode.h>
 #include <TProfile.h>
 #include <TRandom3.h>
-#include <TPDGCode.h>
-#include <TF1.h>
+
+#include <string>
+#include <vector>
 
 using namespace o2;
 using namespace o2::framework;
@@ -234,16 +236,14 @@ struct FlowPtEfficiency {
     if (cfgCutDCAxyppPass3Enabled) {
       myTrackSel.SetMaxDcaXYPtDep([](float pt) { return 0.004f + 0.013f / pt; });
     } else {
-      if(cfgCutDCAxy != 0.0){
+      if (cfgCutDCAxy != 0.0) {
         myTrackSel.SetMaxDcaXY(cfgCutDCAxy);
-      }
-      else {
+      } else {
         fPtDepDCAxy = new TF1("ptDepDCAxy", Form("[0]*%s", cfgDCAxyFunction->c_str()), 0.001, 100);
         fPtDepDCAxy->SetParameter(0, cfgDCAxyNSigma);
         LOGF(info, "DCAxy pt-dependence function: %s", Form("[0]*%s", cfgDCAxyFunction->c_str()));
         myTrackSel.SetMaxDcaXYPtDep([fPtDepDCAxy = this->fPtDepDCAxy](float pt) { return fPtDepDCAxy->Eval(pt); });
       }
-      
     }
     myTrackSel.SetMinNClustersTPC(cfgCutTPCclu);
     myTrackSel.SetMinNCrossedRowsTPC(cfgCutTPCcrossedrows);
