@@ -334,8 +334,8 @@ struct FlowGfwLightIons {
     });
     AxisSpec bAxis = {bbinning, "#it{b}"};
     AxisSpec t0cAxis = {1000, 0, 10000, "N_{ch} (T0C)"};
-    AxisSpec t0aAxis = {500, 0, 500, "N_{ch} (T0A)"};
-    AxisSpec v0aAxis = {500, 0, 500, "N_{ch} (V0A)"};
+    AxisSpec t0aAxis = {300, 0, 30000, "N_{ch} (T0A)"};
+    AxisSpec v0aAxis = {800, 0, 80000, "N_{ch} (V0A)"};
     AxisSpec multpvAxis = {600, 0, 600, "N_{ch} (PV)"};
     AxisSpec dcaZAXis = {200, -2, 2, "DCA_{z} (cm)"};
     AxisSpec dcaXYAXis = {200, -0.5, 0.5, "DCA_{xy} (cm)"};
@@ -1199,6 +1199,7 @@ struct FlowGfwLightIons {
     for (const auto& collision : collisions) {
       centrality = getCentrality(collision);
     }
+
     std::vector<int> numberOfTracks;
     for (auto const& collision : collisions) {
       auto groupedTracks = tracks.sliceBy(perCollision, collision.globalIndex());
