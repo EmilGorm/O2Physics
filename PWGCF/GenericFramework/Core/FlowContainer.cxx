@@ -10,6 +10,8 @@
 // or submit itself to any jurisdiction.
 
 #include "FlowContainer.h"
+#include <vector>
+#include <cstdio>
 
 ClassImp(FlowContainer);
 
