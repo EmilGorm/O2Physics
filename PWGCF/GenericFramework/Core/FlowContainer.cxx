@@ -920,7 +920,7 @@ TProfile* FlowContainer::GetRefFlowProfile(const char* order, double m1, double 
   }
   delete rhSubset;
   if (!retpf) {
-    LOGF(error,"Reference flow profile is null");
+    LOGF(error, "Reference flow profile is null");
     return nullptr;
   }
   retpf->RebinX(nBins);
