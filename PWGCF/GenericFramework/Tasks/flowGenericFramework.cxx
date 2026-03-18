@@ -871,8 +871,7 @@ struct FlowGenericFramework {
   }
 
   struct AcceptedTracks {
-
-    AcceptedTracks(std::size_t nptbins)
+    explicit AcceptedTracks(std::size_t nptbins)
       : nch(nptbins, 0.f),
         npi(nptbins, 0.f),
         nka(nptbins, 0.f),
