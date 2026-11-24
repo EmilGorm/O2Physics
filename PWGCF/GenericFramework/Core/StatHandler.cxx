@@ -12,7 +12,7 @@
 // NOLINTBEGIN(readability/casting, readability/braces)
 #include "StatHandler.h"
 
-#include "TRandom.h"
+#include <TRandom.h>
 
 #include <cstdio>
 #include <memory>

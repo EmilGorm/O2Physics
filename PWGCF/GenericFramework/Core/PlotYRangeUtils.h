@@ -12,10 +12,10 @@
 #ifndef PWGCF_GENERICFRAMEWORK_CORE_PLOTYRANGEUTILS_H_
 #define PWGCF_GENERICFRAMEWORK_CORE_PLOTYRANGEUTILS_H_
 
-#include "TGraphAsymmErrors.h"
-#include "TGraphErrors.h"
-#include "TH1.h"
-#include "TH1D.h"
+#include <TGraphAsymmErrors.h>
+#include <TGraphErrors.h>
+#include <TH1.h>
+#include <TH1D.h>
 
 #include <algorithm>
 #include <cmath>

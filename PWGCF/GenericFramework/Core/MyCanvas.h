@@ -13,16 +13,16 @@
 #ifndef PWGCF_GENERICFRAMEWORK_CORE_MYCANVAS_H_
 #define PWGCF_GENERICFRAMEWORK_CORE_MYCANVAS_H_
 
-#include "TCanvas.h"
-#include "TGraphAsymmErrors.h"
-#include "TGraphErrors.h"
-#include "TH1.h"
-#include "TLatex.h"
-#include "TLegend.h"
-#include "TLine.h"
-#include "TPad.h"
-#include "TString.h"
-#include "TStyle.h"
+#include <TCanvas.h>
+#include <TGraphAsymmErrors.h>
+#include <TGraphErrors.h>
+#include <TH1.h>
+#include <TLatex.h>
+#include <TLegend.h>
+#include <TLine.h>
+#include <TPad.h>
+#include <TString.h>
+#include <TStyle.h>
 
 #include <map>
 #include <string>
